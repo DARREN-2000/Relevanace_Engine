@@ -3,65 +3,162 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consentinel - Consent-First NBA Engine</title>
+    <title>Consentinel | Consent-First NBA Engine</title>
+    <meta name="description" content="The sentinel for consent-first engagement. A self-hostable, open-source Next Best Action engine.">
     <link rel="stylesheet" href="style.css">
+    <!-- Include Lucide icons for slick UI -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
-    <header>
-        <h1>Consentinel</h1>
-        <p>The sentinel for consent-first engagement.</p>
-        <p class="hero">"The best marketing action is often no action."</p>
-    </header>
+    <div class="bg-glow"></div>
+    <div class="bg-glow-2"></div>
+
+    <nav>
+        <div class="brand">Consentinel</div>
+        <div class="nav-links">
+            <a href="#features">Features</a>
+            <a href="#architecture">Architecture</a>
+            <a href="#playground">Playground</a>
+            <a href="#comparison">Compare</a>
+        </div>
+        <div class="nav-actions">
+            <a href="https://github.com/DARREN-2000/Consentinel" class="btn btn-primary" target="_blank">Star on GitHub</a>
+        </div>
+    </nav>
 
     <main>
-        <section id="problem">
-            <h2>The Problem</h2>
-            <p>Traditional marketing platforms blast messages. Consentinel checks fatigue, suppression rules, and consents before acting.</p>
+        <section class="hero">
+            <div class="hero-badge">✨ Open Source & Self-Hostable</div>
+            <h1>Consent-First <br> Engagement Engine</h1>
+            <p>Traditional marketing platforms blast messages. Consentinel checks fatigue, suppression rules, and consents before acting. <i>Because the best marketing action is often no action.</i></p>
+            <div class="hero-cta">
+                <a href="#playground" class="btn btn-primary">Try Playground</a>
+                <a href="https://github.com/DARREN-2000/Consentinel" class="btn btn-secondary" target="_blank">View Documentation</a>
+            </div>
         </section>
 
-        <section id="features">
-            <h2>Features</h2>
-            <ul>
-                <li>Consent-First Decisioning</li>
-                <li>Suppression Engine & Fatigue Management</li>
-                <li>Self-hostable & Open-source</li>
-                <li>AI Agents for Segmentation & Copy</li>
-            </ul>
+        <section id="features" class="reveal">
+            <h2 class="section-title">Engineered for Trust</h2>
+            <p class="section-subtitle">Powerful features that prioritize your users' consent and attention.</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i data-lucide="shield-check"></i></div>
+                    <h3>Consent-First Decisioning</h3>
+                    <p>Automatically evaluate user opt-ins, GDPR/CCPA status, and communication preferences before any message is queued.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon"><i data-lucide="zap-off"></i></div>
+                    <h3>Fatigue Management</h3>
+                    <p>Intelligent suppression engine prevents over-communication. Respect frequency caps seamlessly.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon"><i data-lucide="server"></i></div>
+                    <h3>Self-Hostable</h3>
+                    <p>Keep your data in your infrastructure. Fully open-source and ready to deploy via Docker or Helm.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon"><i data-lucide="bot"></i></div>
+                    <h3>AI Agents</h3>
+                    <p>Leverage integrated AI for smart segmentation, copy generation, and dynamic A/B testing.</p>
+                </div>
+            </div>
         </section>
 
-        <section id="playground">
-            <h2>Interactive Playground</h2>
-            <p>Try out a live, interactive preview of the Consentinel dashboard right here in your browser.</p>
-            <iframe src="playground/index.html" width="100%" height="800px" style="border: none; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"></iframe>
+        <section id="playground" class="reveal">
+            <h2 class="section-title">Interactive Playground</h2>
+            <p class="section-subtitle">Experience the Consentinel dashboard live in your browser.</p>
+            
+            <div class="glass-panel">
+                <div class="playground-container">
+                    <iframe class="playground-iframe" src="playground/index.html" title="Consentinel Playground"></iframe>
+                </div>
+            </div>
         </section>
 
-        <section id="architecture">
-            <h2>Architecture</h2>
-            <img src="architecture.svg" alt="Architecture Diagram" />
+        <section id="architecture" class="reveal">
+            <h2 class="section-title">System Architecture</h2>
+            <p class="section-subtitle">Built for scale, speed, and strict data privacy.</p>
+            
+            <div class="glass-panel" style="text-align: center;">
+                <img src="architecture.svg" alt="Consentinel Architecture Diagram" class="arch-img" />
+            </div>
         </section>
 
-        <section id="comparison">
-            <h2>Competitor Comparison</h2>
-            <table border="1">
-                <tr><th>Feature</th><th>Consentinel</th><th>Braze</th><th>Iterable</th></tr>
-                <tr><td>Consent-First</td><td>Yes</td><td>Add-on</td><td>Add-on</td></tr>
-                <tr><td>Self-Hostable</td><td>Yes</td><td>No</td><td>No</td></tr>
-                <tr><td>"Do Nothing" NBA</td><td>Native</td><td>Workaround</td><td>Workaround</td></tr>
-            </table>
-        </section>
-
-        <section id="links">
-            <h2>Links</h2>
-            <ul>
-                <li><a href="https://github.com/DARREN-2000/Consentinel">GitHub Repo</a></li>
-                <li><a href="/api/health">Live API Demo</a></li>
-                <li><a href="playground/index.html">Frontend Dashboard</a></li>
-            </ul>
+        <section id="comparison" class="reveal">
+            <h2 class="section-title">Why Consentinel?</h2>
+            <p class="section-subtitle">How we stack up against traditional engagement platforms.</p>
+            
+            <div class="glass-panel">
+                <div class="comparison-wrapper">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Capability</th>
+                                <th>Consentinel</th>
+                                <th>Braze</th>
+                                <th>Iterable</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Consent-First Core</td>
+                                <td>Native</td>
+                                <td>Add-on</td>
+                                <td>Add-on</td>
+                            </tr>
+                            <tr>
+                                <td>Self-Hostable / On-Prem</td>
+                                <td>Yes</td>
+                                <td>No</td>
+                                <td>No</td>
+                            </tr>
+                            <tr>
+                                <td>"Do Nothing" NBA</td>
+                                <td>Native</td>
+                                <td>Workaround</td>
+                                <td>Workaround</td>
+                            </tr>
+                            <tr>
+                                <td>Open Source</td>
+                                <td>Yes</td>
+                                <td>No</td>
+                                <td>No</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </section>
     </main>
 
     <footer>
-        <p>Built with ❤️ for marketers who respect their users</p>
+        <p>Built with ❤️ for marketers who respect their users.</p>
+        <p style="margin-top: 1rem;"><a href="https://github.com/DARREN-2000/Consentinel" style="color: var(--accent-1); text-decoration: none;">GitHub</a> &bull; <a href="/api/health" style="color: var(--text-secondary); text-decoration: none;">API Status</a></p>
     </footer>
+
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Reveal Animations on Scroll
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        // Trigger once on load
+        reveal();
+    </script>
 </body>
 </html>
