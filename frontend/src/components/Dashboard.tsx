@@ -27,7 +27,7 @@ export const Dashboard = () => {
 
         axios.get('http://localhost:8000/api/analytics/fatigue')
             .then(res => setFatigue(res.data))
-            .catch(err => {
+            .catch(() => {
                 setFatigue([
                     { bucket: "0.0-0.2", count: 50200, percentage: 0.4 },
                     { bucket: "0.2-0.4", count: 40150, percentage: 0.3 },
@@ -39,7 +39,7 @@ export const Dashboard = () => {
 
         axios.get('http://localhost:8000/api/analytics/channels')
             .then(res => setChannels(res.data))
-            .catch(err => {
+            .catch(() => {
                 setChannels([
                     { channel: "Email", total_decisions: 300000, suppressed: 50000, open_rate: 0.25, click_rate: 0.1 },
                     { channel: "SMS", total_decisions: 150000, suppressed: 20000, open_rate: 0.8, click_rate: 0.15 },
@@ -49,7 +49,7 @@ export const Dashboard = () => {
 
         axios.get('http://localhost:8000/api/analytics/suppression')
             .then(res => setSuppression(res.data))
-            .catch(err => {
+            .catch(() => {
                 setSuppression([
                     { reason: "No Consent", count: 40000, percentage: 0.5 },
                     { reason: "Fatigue Cap", count: 25000, percentage: 0.3 },
@@ -165,7 +165,7 @@ export const Dashboard = () => {
                                 <Tooltip cursor={{fill: 'rgba(255,255,255,0.05)'}} />
                                 <Bar dataKey="count" name="Users Suppressed" radius={[0, 4, 4, 0]}>
                                     {
-                                        suppression.map((entry, index) => (
+                                        suppression.map((_, index) => (
                                             <Cell key={`cell-${index}`} fill={['#ef4444', '#f59e0b', '#3b82f6', '#8b5cf6'][index % 4]} />
                                         ))
                                     }
