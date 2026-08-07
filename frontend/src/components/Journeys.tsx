@@ -18,9 +18,9 @@ export const Journeys = () => {
     }, []);
 
     return (
-        <div style={{ padding: '20px' }}>
+        <div className="page-container">
             <h1>Journey Templates</h1>
-            <table style={{ width: '100%', textAlign: 'left', borderCollapse: 'collapse' }}>
+            <table>
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -30,7 +30,7 @@ export const Journeys = () => {
                 </thead>
                 <tbody>
                     {templates.map(t => (
-                        <tr key={t.id} style={{ borderBottom: '1px solid #ccc' }}>
+                        <tr key={t.id}>
                             <td>{t.name}</td>
                             <td>{t.goal}</td>
                             <td>{t.is_active ? "Active" : "Inactive"}</td>

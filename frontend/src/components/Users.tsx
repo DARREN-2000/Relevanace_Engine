@@ -18,9 +18,9 @@ export const Users = () => {
     }, []);
 
     return (
-        <div style={{ padding: '20px' }}>
+        <div className="page-container">
             <h1>Users</h1>
-            <table style={{ width: '100%', textAlign: 'left', borderCollapse: 'collapse' }}>
+            <table>
                 <thead>
                     <tr>
                         <th>Email</th>
@@ -31,7 +31,7 @@ export const Users = () => {
                 </thead>
                 <tbody>
                     {users.map(u => (
-                        <tr key={u.id} style={{ borderBottom: '1px solid #ccc' }}>
+                        <tr key={u.id}>
                             <td>{u.email}</td>
                             <td>{u.lifecycle_stage}</td>
                             <td>{u.fatigue_score}</td>

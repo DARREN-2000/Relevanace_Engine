@@ -57,7 +57,7 @@ export const Events = () => {
     };
 
     return (
-        <div style={{ padding: '20px' }}>
+        <div className="page-container">
             <h1>Events</h1>
 
             <div style={{ marginBottom: '20px' }}>
@@ -95,7 +95,7 @@ export const Events = () => {
             </div>
 
             <h2>Event History</h2>
-            <table style={{ width: '100%', textAlign: 'left', borderCollapse: 'collapse' }}>
+            <table>
                 <thead>
                     <tr>
                         <th>Type</th>
@@ -106,7 +106,7 @@ export const Events = () => {
                 </thead>
                 <tbody>
                     {events.map(ev => (
-                        <tr key={ev.id} style={{ borderBottom: '1px solid #ccc' }}>
+                        <tr key={ev.id}>
                             <td>{ev.event_type}</td>
                             <td>{ev.event_name}</td>
                             <td>{ev.source}</td>

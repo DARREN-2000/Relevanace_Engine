@@ -18,9 +18,9 @@ export const Experiments = () => {
     }, []);
 
     return (
-        <div style={{ padding: '20px' }}>
+        <div className="page-container">
             <h1>Experiments</h1>
-            <table style={{ width: '100%', textAlign: 'left', borderCollapse: 'collapse' }}>
+            <table>
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -31,7 +31,7 @@ export const Experiments = () => {
                 </thead>
                 <tbody>
                     {experiments.map(e => (
-                        <tr key={e.id} style={{ borderBottom: '1px solid #ccc' }}>
+                        <tr key={e.id}>
                             <td>{e.name}</td>
                             <td>{e.description}</td>
                             <td>{e.status}</td>

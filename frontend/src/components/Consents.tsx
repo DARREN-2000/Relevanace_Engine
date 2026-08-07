@@ -56,7 +56,7 @@ export const Consents = () => {
     };
 
     return (
-        <div style={{ padding: '20px' }}>
+        <div className="page-container">
             <h1>Consents</h1>
 
             <div style={{ marginBottom: '20px' }}>
@@ -97,7 +97,7 @@ export const Consents = () => {
             </div>
 
             <h2>Consent Records</h2>
-            <table style={{ width: '100%', textAlign: 'left', borderCollapse: 'collapse' }}>
+            <table>
                 <thead>
                     <tr>
                         <th>Channel</th>
@@ -108,7 +108,7 @@ export const Consents = () => {
                 </thead>
                 <tbody>
                     {consents.map(c => (
-                        <tr key={c.id} style={{ borderBottom: '1px solid #ccc' }}>
+                        <tr key={c.id}>
                             <td>{c.channel}</td>
                             <td>{c.status}</td>
                             <td>{c.source}</td>

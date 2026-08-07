@@ -18,9 +18,9 @@ export const Audiences = () => {
     }, []);
 
     return (
-        <div style={{ padding: '20px' }}>
+        <div className="page-container">
             <h1>Audience Segments</h1>
-            <table style={{ width: '100%', textAlign: 'left', borderCollapse: 'collapse' }}>
+            <table>
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -30,7 +30,7 @@ export const Audiences = () => {
                 </thead>
                 <tbody>
                     {audiences.map(a => (
-                        <tr key={a.id} style={{ borderBottom: '1px solid #ccc' }}>
+                        <tr key={a.id}>
                             <td>{a.name}</td>
                             <td>{a.description}</td>
                             <td>{a.estimated_size}</td>

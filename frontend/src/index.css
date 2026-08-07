@@ -64,3 +64,64 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Inter', sans-serif;
   font-size: 12px;
 }
+
+/* Page & Table Styling */
+.page-container {
+  padding: 30px;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.page-container h1 {
+  font-size: 2rem;
+  margin-bottom: 25px;
+  background: linear-gradient(to right, #ffffff, #a1a1aa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+  padding: 15px 20px !important;
+  text-align: left !important;
+  border-bottom: 1px solid var(--glass-border) !important;
+}
+
+th {
+  font-family: 'Outfit', sans-serif;
+  color: var(--text-secondary);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+tr:last-child td {
+  border-bottom: none !important;
+}
+
+tr {
+  transition: background-color 0.2s ease;
+}
+
+tr:hover td {
+  background: rgba(99, 102, 241, 0.08);
+}

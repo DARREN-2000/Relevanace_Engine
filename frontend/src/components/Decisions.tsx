@@ -34,7 +34,7 @@ export const Decisions = () => {
     };
 
     return (
-        <div style={{ padding: '20px' }}>
+        <div className="page-container">
             <h1>Decisions (Next Best Action)</h1>
             <div style={{ marginBottom: '20px' }}>
                 <input
@@ -59,7 +59,7 @@ export const Decisions = () => {
             )}
 
             <h2>Decision History</h2>
-            <table style={{ width: '100%', textAlign: 'left', borderCollapse: 'collapse' }}>
+            <table>
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -71,7 +71,7 @@ export const Decisions = () => {
                 </thead>
                 <tbody>
                     {history.map(h => (
-                        <tr key={h.id} style={{ borderBottom: '1px solid #ccc' }}>
+                        <tr key={h.id}>
                             <td>{h.id}</td>
                             <td>{h.channel}</td>
                             <td>{h.action}</td>
