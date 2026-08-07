@@ -25,9 +25,7 @@ def analytics_summary(db: Session = Depends(get_db)) -> dict:
     total_events = db.query(Event).count()
 
     suppressed_count = (
-        db.query(MessageDecision)
-        .filter(MessageDecision.suppressed.is_(True))
-        .count()
+        db.query(MessageDecision).filter(MessageDecision.suppressed.is_(True)).count()
     )
     suppression_rate = (
         suppressed_count / total_decisions if total_decisions > 0 else 0.0
@@ -37,12 +35,8 @@ def analytics_summary(db: Session = Depends(get_db)) -> dict:
     avg_churn = db.query(func.avg(User.churn_risk)).scalar() or 0.0
     avg_fatigue = db.query(func.avg(User.fatigue_score)).scalar() or 0.0
 
-    activated_users = (
-        db.query(User).filter(User.activated.is_(True)).count()
-    )
-    activation_rate = (
-        activated_users / total_users if total_users > 0 else 0.0
-    )
+    activated_users = db.query(User).filter(User.activated.is_(True)).count()
+    activation_rate = activated_users / total_users if total_users > 0 else 0.0
 
     return {
         "total_users": total_users,
@@ -64,9 +58,7 @@ def channel_performance(db: Session = Depends(get_db)) -> list[dict]:
 
     for channel in channels:
         total = (
-            db.query(MessageDecision)
-            .filter(MessageDecision.channel == channel)
-            .count()
+            db.query(MessageDecision).filter(MessageDecision.channel == channel).count()
         )
         if total == 0:
             continue
@@ -113,18 +105,24 @@ def channel_performance(db: Session = Depends(get_db)) -> list[dict]:
         )
 
         non_suppressed = total - suppressed
-        metrics.append({
-            "channel": channel,
-            "total_decisions": total,
-            "suppressed": suppressed,
-            "delivered": delivered,
-            "opened": opened,
-            "clicked": clicked,
-            "converted": converted,
-            "suppression_rate": round(suppressed / total, 4) if total else 0.0,
-            "open_rate": round(opened / non_suppressed, 4) if non_suppressed else 0.0,
-            "click_rate": round(clicked / non_suppressed, 4) if non_suppressed else 0.0,
-        })
+        metrics.append(
+            {
+                "channel": channel,
+                "total_decisions": total,
+                "suppressed": suppressed,
+                "delivered": delivered,
+                "opened": opened,
+                "clicked": clicked,
+                "converted": converted,
+                "suppression_rate": round(suppressed / total, 4) if total else 0.0,
+                "open_rate": round(opened / non_suppressed, 4)
+                if non_suppressed
+                else 0.0,
+                "click_rate": round(clicked / non_suppressed, 4)
+                if non_suppressed
+                else 0.0,
+            }
+        )
 
     return metrics
 
@@ -146,20 +144,20 @@ def fatigue_distribution(db: Session = Depends(get_db)) -> list[dict]:
             .filter(User.fatigue_score >= low, User.fatigue_score < high)
             .count()
         )
-        result.append({
-            "bucket": label,
-            "count": count,
-            "percentage": round(count / total, 4),
-        })
+        result.append(
+            {
+                "bucket": label,
+                "count": count,
+                "percentage": round(count / total, 4),
+            }
+        )
     return result
 
 
 @router.get("/suppression", response_model=list[SuppressionStats])
 def suppression_stats(db: Session = Depends(get_db)) -> list[dict]:
     suppressed = (
-        db.query(MessageDecision)
-        .filter(MessageDecision.suppressed.is_(True))
-        .all()
+        db.query(MessageDecision).filter(MessageDecision.suppressed.is_(True)).all()
     )
     total = len(suppressed) or 1
     reasons: dict[str, int] = {}

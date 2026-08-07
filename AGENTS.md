@@ -15,7 +15,9 @@ Consentinel is a consent-first, AI-powered next-best-action marketing automation
 ## Key Concepts
 
 ### Core Engine
+
 The NextBestActionEngine evaluates each user's state and decides the optimal action:
+
 1. Check if user is already activated
 2. Check fatigue levels
 3. Verify consent for each channel
@@ -23,9 +25,11 @@ The NextBestActionEngine evaluates each user's state and decides the optimal act
 5. Select best channel + action based on scores
 
 ### "Do Nothing" is Valid
+
 The system can decide to take no action — this is a key differentiator. Suppression of irrelevant marketing is a feature, not a bug.
 
 ### Consent-First
+
 Every action passes through consent verification before execution. The system integrates with the companion ConsentHub project (B2B_Consent_Personalization) for consent data.
 
 ## Code Structure

@@ -29,16 +29,12 @@ class User(Base):
     company_name: Mapped[str | None] = mapped_column(String(255), nullable=True)
     company_size: Mapped[int | None] = mapped_column(Integer, nullable=True)
 
-    lifecycle_stage: Mapped[str] = mapped_column(
-        String(50), default="unknown"
-    )
+    lifecycle_stage: Mapped[str] = mapped_column(String(50), default="unknown")
     intent_score: Mapped[float] = mapped_column(Float, default=0.0)
     churn_risk: Mapped[float] = mapped_column(Float, default=0.0)
     activation_score: Mapped[float] = mapped_column(Float, default=0.0)
     fatigue_score: Mapped[float] = mapped_column(Float, default=0.0)
-    preferred_channel: Mapped[str | None] = mapped_column(
-        String(50), nullable=True
-    )
+    preferred_channel: Mapped[str | None] = mapped_column(String(50), nullable=True)
     last_meaningful_touchpoint: Mapped[datetime | None] = mapped_column(
         DateTime(timezone=True), nullable=True
     )
@@ -50,9 +46,7 @@ class User(Base):
     updated_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), default=_utcnow, onupdate=_utcnow
     )
-    metadata_: Mapped[dict | None] = mapped_column(
-        "metadata", JSON, nullable=True
-    )
+    metadata_: Mapped[dict | None] = mapped_column("metadata", JSON, nullable=True)
 
     # Relationships
     consents = relationship("Consent", back_populates="user", lazy="selectin")
@@ -60,12 +54,8 @@ class User(Base):
         "ChannelPreference", back_populates="user", lazy="selectin"
     )
     events = relationship("Event", back_populates="user", lazy="dynamic")
-    decisions = relationship(
-        "MessageDecision", back_populates="user", lazy="dynamic"
-    )
-    journey_runs = relationship(
-        "JourneyRun", back_populates="user", lazy="dynamic"
-    )
+    decisions = relationship("MessageDecision", back_populates="user", lazy="dynamic")
+    journey_runs = relationship("JourneyRun", back_populates="user", lazy="dynamic")
 
     def __repr__(self) -> str:
         return f"<User {self.email or self.external_id or self.id}>"

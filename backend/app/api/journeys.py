@@ -17,9 +17,7 @@ router = APIRouter(prefix="/journeys", tags=["journeys"])
 journey_agent = JourneyAgent()
 
 
-@router.post(
-    "/templates", response_model=JourneyTemplateResponse, status_code=201
-)
+@router.post("/templates", response_model=JourneyTemplateResponse, status_code=201)
 def create_template(
     payload: JourneyTemplateCreate, db: Session = Depends(get_db)
 ) -> JourneyTemplate:
@@ -42,23 +40,13 @@ def create_template(
 
 @router.get("/templates", response_model=list[JourneyTemplateResponse])
 def list_templates(db: Session = Depends(get_db)) -> list:
-    return (
-        db.query(JourneyTemplate)
-        .filter(JourneyTemplate.is_active.is_(True))
-        .all()
-    )
+    return db.query(JourneyTemplate).filter(JourneyTemplate.is_active.is_(True)).all()
 
 
-@router.get(
-    "/templates/{template_id}", response_model=JourneyTemplateResponse
-)
-def get_template(
-    template_id: str, db: Session = Depends(get_db)
-) -> JourneyTemplate:
+@router.get("/templates/{template_id}", response_model=JourneyTemplateResponse)
+def get_template(template_id: str, db: Session = Depends(get_db)) -> JourneyTemplate:
     template = (
-        db.query(JourneyTemplate)
-        .filter(JourneyTemplate.id == template_id)
-        .first()
+        db.query(JourneyTemplate).filter(JourneyTemplate.id == template_id).first()
     )
     if not template:
         raise HTTPException(status_code=404, detail="Journey template not found")
@@ -87,9 +75,7 @@ def design_journey(
 
 
 @router.get("/runs/{user_id}", response_model=list[JourneyRunResponse])
-def get_user_journey_runs(
-    user_id: str, db: Session = Depends(get_db)
-) -> list:
+def get_user_journey_runs(user_id: str, db: Session = Depends(get_db)) -> list:
     return (
         db.query(JourneyRun)
         .filter(JourneyRun.user_id == user_id)

@@ -2,6 +2,7 @@
 
 from pydantic import BaseModel
 
+
 class CopyGenerateRequest(BaseModel):
     context: dict
     tone: str = "professional"

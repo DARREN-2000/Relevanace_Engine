@@ -3,6 +3,7 @@
 > **Base URL**: `http://localhost:8000/api`
 
 All endpoints return JSON. Errors follow the format:
+
 ```json
 {
   "detail": "Error description"
@@ -18,6 +19,7 @@ All endpoints return JSON. Errors follow the format:
 Basic liveness check.
 
 **Response** `200 OK`
+
 ```json
 {
   "status": "healthy",
@@ -31,6 +33,7 @@ Basic liveness check.
 Readiness check — verifies database connectivity.
 
 **Response** `200 OK`
+
 ```json
 {
   "status": "ready",
@@ -47,6 +50,7 @@ Readiness check — verifies database connectivity.
 Create a new user profile.
 
 **Request Body**
+
 ```json
 {
   "external_id": "crm-12345",
@@ -59,6 +63,7 @@ Create a new user profile.
 ```
 
 **Response** `201 Created`
+
 ```json
 {
   "id": "uuid",
@@ -79,6 +84,7 @@ Create a new user profile.
 ```
 
 **curl**
+
 ```bash
 curl -X POST http://localhost:8000/api/users \
   -H "Content-Type: application/json" \
@@ -90,12 +96,14 @@ curl -X POST http://localhost:8000/api/users \
 List all users with pagination.
 
 **Query Parameters**
-| Param  | Type | Default | Description |
-|--------|------|---------|-------------|
+
+| Param   | Type | Default | Description |
+| ------- | ---- | ------- | ----------- |
 | `skip`  | int  | 0       | Offset      |
 | `limit` | int  | 100     | Max results |
 
 **curl**
+
 ```bash
 curl http://localhost:8000/api/users?skip=0&limit=10
 ```
@@ -105,6 +113,7 @@ curl http://localhost:8000/api/users?skip=0&limit=10
 Get a single user by ID.
 
 **curl**
+
 ```bash
 curl http://localhost:8000/api/users/{user_id}
 ```
@@ -114,6 +123,7 @@ curl http://localhost:8000/api/users/{user_id}
 Update user fields.
 
 **Request Body** (all fields optional)
+
 ```json
 {
   "name": "Jane Smith",
@@ -123,6 +133,7 @@ Update user fields.
 ```
 
 **curl**
+
 ```bash
 curl -X PUT http://localhost:8000/api/users/{user_id} \
   -H "Content-Type: application/json" \
@@ -134,6 +145,7 @@ curl -X PUT http://localhost:8000/api/users/{user_id} \
 Delete a user profile.
 
 **Response** `200 OK`
+
 ```json
 {
   "detail": "User deleted"
@@ -145,13 +157,14 @@ Delete a user profile.
 Get computed behavioral scores for a user. Recalculates intent, churn risk, activation, and fatigue scores from event data.
 
 **Response** `200 OK`
+
 ```json
 {
   "user_id": "uuid",
   "intent_score": 0.72,
   "churn_risk": 0.15,
-  "activation_score": 0.50,
-  "fatigue_score": 0.30,
+  "activation_score": 0.5,
+  "fatigue_score": 0.3,
   "lifecycle_stage": "active"
 }
 ```
@@ -165,6 +178,7 @@ Get computed behavioral scores for a user. Recalculates intent, churn risk, acti
 Record a consent grant for a user on a specific channel.
 
 **Request Body**
+
 ```json
 {
   "user_id": "uuid",
@@ -176,6 +190,7 @@ Record a consent grant for a user on a specific channel.
 ```
 
 **curl**
+
 ```bash
 curl -X POST http://localhost:8000/api/consents \
   -H "Content-Type: application/json" \
@@ -187,6 +202,7 @@ curl -X POST http://localhost:8000/api/consents \
 Get all consent records for a user.
 
 **Response** `200 OK`
+
 ```json
 [
   {
@@ -206,6 +222,7 @@ Get all consent records for a user.
 Withdraw a previously granted consent.
 
 **Response** `200 OK`
+
 ```json
 {
   "id": "uuid",
@@ -219,6 +236,7 @@ Withdraw a previously granted consent.
 Set channel-specific preferences (frequency caps, quiet hours).
 
 **Request Body**
+
 ```json
 {
   "user_id": "uuid",
@@ -236,13 +254,14 @@ Set channel-specific preferences (frequency caps, quiet hours).
 Get a consent summary across all channels.
 
 **Response** `200 OK`
+
 ```json
 {
   "user_id": "uuid",
   "channels": {
-    "email": {"consented": true, "source": "signup_form"},
-    "sms": {"consented": false, "source": null},
-    "push": {"consented": true, "source": "app_settings"}
+    "email": { "consented": true, "source": "signup_form" },
+    "sms": { "consented": false, "source": null },
+    "push": { "consented": true, "source": "app_settings" }
   }
 }
 ```
@@ -256,17 +275,19 @@ Get a consent summary across all channels.
 Track a user event.
 
 **Request Body**
+
 ```json
 {
   "user_id": "uuid",
   "event_type": "track",
   "event_name": "pricing_view",
-  "properties": {"plan": "enterprise", "duration_seconds": 45},
+  "properties": { "plan": "enterprise", "duration_seconds": 45 },
   "source": "web"
 }
 ```
 
 **curl**
+
 ```bash
 curl -X POST http://localhost:8000/api/events \
   -H "Content-Type: application/json" \
@@ -278,10 +299,11 @@ curl -X POST http://localhost:8000/api/events \
 Get event history for a user.
 
 **Query Parameters**
-| Param  | Type | Default | Description       |
-|--------|------|---------|-------------------|
-| `skip`  | int  | 0       | Offset            |
-| `limit` | int  | 100     | Max results       |
+
+| Param   | Type | Default | Description |
+| ------- | ---- | ------- | ----------- |
+| `skip`  | int  | 0       | Offset      |
+| `limit` | int  | 100     | Max results |
 
 ---
 
@@ -292,6 +314,7 @@ Get event history for a user.
 Get the next-best-action decision for a single user. This is the core engine endpoint.
 
 **Request Body**
+
 ```json
 {
   "user_id": "uuid"
@@ -299,6 +322,7 @@ Get the next-best-action decision for a single user. This is the core engine end
 ```
 
 **Response** `200 OK`
+
 ```json
 {
   "user_id": "uuid",
@@ -317,6 +341,7 @@ Get the next-best-action decision for a single user. This is the core engine end
 The engine may return `"channel": "none"` and `"action": "none"` when suppression is the best action.
 
 **curl**
+
 ```bash
 curl -X POST http://localhost:8000/api/decisions/next-best-action \
   -H "Content-Type: application/json" \
@@ -328,6 +353,7 @@ curl -X POST http://localhost:8000/api/decisions/next-best-action \
 Get next-best-action decisions for multiple users at once.
 
 **Request Body**
+
 ```json
 {
   "user_ids": ["uuid-1", "uuid-2", "uuid-3"]
@@ -335,6 +361,7 @@ Get next-best-action decisions for multiple users at once.
 ```
 
 **Response** `200 OK`
+
 ```json
 {
   "decisions": [
@@ -354,14 +381,15 @@ Get decision history for a user.
 Get an explainability breakdown for a specific decision.
 
 **Response** `200 OK`
+
 ```json
 {
   "decision_id": "uuid",
   "factors": {
     "intent_score": 0.72,
     "churn_risk": 0.15,
-    "fatigue_score": 0.30,
-    "consent_status": {"email": true, "sms": false},
+    "fatigue_score": 0.3,
+    "consent_status": { "email": true, "sms": false },
     "suppression_rules": [],
     "selected_channel": "email",
     "selected_action": "educate",
@@ -380,6 +408,7 @@ Get an explainability breakdown for a specific decision.
 Create a new audience segment.
 
 **Request Body**
+
 ```json
 {
   "name": "High-Intent Trial Users",
@@ -412,14 +441,30 @@ Update an audience segment.
 Create a journey template (multi-step automated sequence).
 
 **Request Body**
+
 ```json
 {
   "name": "Onboarding Journey",
   "goal": "activation",
   "steps": [
-    {"day": 0, "channel": "email", "action": "educate", "content_key": "welcome"},
-    {"day": 2, "channel": "push", "action": "remind", "content_key": "setup_guide"},
-    {"day": 5, "channel": "email", "action": "offer", "content_key": "pro_trial"}
+    {
+      "day": 0,
+      "channel": "email",
+      "action": "educate",
+      "content_key": "welcome"
+    },
+    {
+      "day": 2,
+      "channel": "push",
+      "action": "remind",
+      "content_key": "setup_guide"
+    },
+    {
+      "day": 5,
+      "channel": "email",
+      "action": "offer",
+      "content_key": "pro_trial"
+    }
   ]
 }
 ```
@@ -433,6 +478,7 @@ List all journey templates.
 Enroll a user in a journey.
 
 **Request Body**
+
 ```json
 {
   "template_id": "uuid"
@@ -452,13 +498,14 @@ Get journey run history for a user.
 Create an A/B experiment.
 
 **Request Body**
+
 ```json
 {
   "name": "Subject Line Test",
   "hypothesis": "Personalized subject lines increase open rates",
   "variants": [
-    {"name": "control", "weight": 50},
-    {"name": "personalized", "weight": 50}
+    { "name": "control", "weight": 50 },
+    { "name": "personalized", "weight": 50 }
   ]
 }
 ```
@@ -476,6 +523,7 @@ Get experiment details and results.
 Update experiment status (e.g., start, pause, complete).
 
 **Request Body**
+
 ```json
 {
   "status": "running"
@@ -491,6 +539,7 @@ Update experiment status (e.g., start, pause, complete).
 Get high-level dashboard metrics.
 
 **Response** `200 OK`
+
 ```json
 {
   "total_users": 1500,
@@ -512,6 +561,7 @@ Get high-level dashboard metrics.
 ```
 
 **curl**
+
 ```bash
 curl http://localhost:8000/api/analytics/dashboard
 ```
@@ -521,10 +571,11 @@ curl http://localhost:8000/api/analytics/dashboard
 Get cohort analysis data.
 
 **Query Parameters**
-| Param        | Type   | Description                     |
-|-------------|--------|---------------------------------|
-| `cohort_by`  | string | Field to group by (e.g., `lifecycle_stage`) |
-| `metric`     | string | Metric to compute (e.g., `activation_rate`) |
+
+| Param       | Type   | Description                                 |
+| ----------- | ------ | ------------------------------------------- |
+| `cohort_by` | string | Field to group by (e.g., `lifecycle_stage`) |
+| `metric`    | string | Metric to compute (e.g., `activation_rate`) |
 
 ### `GET /api/analytics/funnels`
 
@@ -539,6 +590,7 @@ Get channel attribution data — which channels drive the most conversions.
 Get a summary of tracked events grouped by type.
 
 **Response** `200 OK`
+
 ```json
 {
   "total_events": 45000,
@@ -548,8 +600,8 @@ Get a summary of tracked events grouped by type.
     "identify": 5000
   },
   "top_events": [
-    {"name": "pricing_view", "count": 4500},
-    {"name": "feature_used", "count": 3200}
+    { "name": "pricing_view", "count": 4500 },
+    { "name": "feature_used", "count": 3200 }
   ]
 }
 ```

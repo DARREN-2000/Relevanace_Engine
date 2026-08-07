@@ -2,13 +2,13 @@
 
 ## Prerequisites
 
-| Tool | Version | Purpose |
-|------|---------|---------|
-| Python | 3.12+ | Backend runtime |
-| Docker | 24+ | Containerization |
-| Docker Compose | v2+ | Local orchestration |
-| Make | any | Task runner |
-| Git | 2.40+ | Version control |
+| Tool           | Version | Purpose             |
+| -------------- | ------- | ------------------- |
+| Python         | 3.12+   | Backend runtime     |
+| Docker         | 24+     | Containerization    |
+| Docker Compose | v2+     | Local orchestration |
+| Make           | any     | Task runner         |
+| Git            | 2.40+   | Version control     |
 
 ---
 
@@ -195,6 +195,7 @@ from sqlalchemy import Column, String
 from app.database import Base
 import uuid
 
+
 class MyResource(Base):
     __tablename__ = "my_resources"
     id = Column(String, primary_key=True, default=lambda: str(uuid.uuid4()))
@@ -207,8 +208,10 @@ class MyResource(Base):
 # backend/app/schemas/my_resource.py
 from pydantic import BaseModel
 
+
 class MyResourceCreate(BaseModel):
     name: str
+
 
 class MyResourceResponse(BaseModel):
     id: str
@@ -230,6 +233,7 @@ from app.schemas.my_resource import MyResourceCreate, MyResourceResponse
 
 router = APIRouter(prefix="/my-resources", tags=["my-resources"])
 
+
 @router.post("/", response_model=MyResourceResponse, status_code=201)
 def create(data: MyResourceCreate, db: Session = Depends(get_db)):
     resource = MyResource(name=data.name)
@@ -244,6 +248,7 @@ def create(data: MyResourceCreate, db: Session = Depends(get_db)):
 ```python
 # backend/app/main.py — add to the router includes
 from app.api import my_resource
+
 app.include_router(my_resource.router, prefix=settings.API_PREFIX)
 ```
 
@@ -269,16 +274,16 @@ alembic upgrade head
 
 ## Useful Commands
 
-| Command | Description |
-|---------|-------------|
-| `make help` | Show all available make targets |
-| `make up` | Start production stack |
-| `make dev` | Start dev stack with hot-reload |
-| `make test` | Run tests |
-| `make test-cov` | Run tests with coverage |
-| `make lint` | Lint code |
-| `make format` | Auto-format code |
-| `make logs` | Tail backend logs |
-| `make db-shell` | Open PostgreSQL shell |
-| `make redis-cli` | Open Redis CLI |
-| `make clean` | Remove all containers and volumes |
+| Command          | Description                       |
+| ---------------- | --------------------------------- |
+| `make help`      | Show all available make targets   |
+| `make up`        | Start production stack            |
+| `make dev`       | Start dev stack with hot-reload   |
+| `make test`      | Run tests                         |
+| `make test-cov`  | Run tests with coverage           |
+| `make lint`      | Lint code                         |
+| `make format`    | Auto-format code                  |
+| `make logs`      | Tail backend logs                 |
+| `make db-shell`  | Open PostgreSQL shell             |
+| `make redis-cli` | Open Redis CLI                    |
+| `make clean`     | Remove all containers and volumes |

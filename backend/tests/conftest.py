@@ -4,17 +4,15 @@ import uuid
 from datetime import datetime, timezone
 
 import pytest
+from app.database import Base, get_db
+from app.main import app
+from app.models.consent import Consent
+from app.models.event import Event
+from app.models.user import User
+from fastapi.testclient import TestClient
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import StaticPool
-
-from fastapi.testclient import TestClient
-
-from app.database import Base, get_db
-from app.main import app
-from app.models.user import User
-from app.models.consent import Consent
-from app.models.event import Event
 
 SQLALCHEMY_DATABASE_URL = "sqlite://"
 
@@ -23,9 +21,7 @@ engine = create_engine(
     connect_args={"check_same_thread": False},
     poolclass=StaticPool,
 )
-TestingSessionLocal = sessionmaker(
-    autocommit=False, autoflush=False, bind=engine
-)
+TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 
 @pytest.fixture(scope="function")

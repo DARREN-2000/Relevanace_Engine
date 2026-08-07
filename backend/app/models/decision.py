@@ -19,9 +19,7 @@ class MessageDecision(Base):
     id: Mapped[str] = mapped_column(
         String(36), primary_key=True, default=lambda: str(uuid.uuid4())
     )
-    user_id: Mapped[str] = mapped_column(
-        String(36), ForeignKey("users.id"), index=True
-    )
+    user_id: Mapped[str] = mapped_column(String(36), ForeignKey("users.id"), index=True)
     channel: Mapped[str] = mapped_column(String(50))
     action: Mapped[str] = mapped_column(String(50))
     reason: Mapped[str] = mapped_column(String(500))
@@ -36,12 +34,8 @@ class MessageDecision(Base):
     consent_checked: Mapped[bool] = mapped_column(Boolean, default=True)
     fatigue_checked: Mapped[bool] = mapped_column(Boolean, default=True)
     suppressed: Mapped[bool] = mapped_column(Boolean, default=False)
-    suppression_reason: Mapped[str | None] = mapped_column(
-        String(255), nullable=True
-    )
-    model_confidence: Mapped[float | None] = mapped_column(
-        Float, nullable=True
-    )
+    suppression_reason: Mapped[str | None] = mapped_column(String(255), nullable=True)
+    model_confidence: Mapped[float | None] = mapped_column(Float, nullable=True)
     executed_at: Mapped[datetime | None] = mapped_column(
         DateTime(timezone=True), nullable=True
     )

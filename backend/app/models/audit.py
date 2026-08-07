@@ -43,9 +43,7 @@ class ApprovalRequest(Base):
     entity_id: Mapped[str] = mapped_column(String(36))
     requested_by: Mapped[str] = mapped_column(String(255))
     status: Mapped[str] = mapped_column(String(20), default="pending")
-    reviewed_by: Mapped[str | None] = mapped_column(
-        String(255), nullable=True
-    )
+    reviewed_by: Mapped[str | None] = mapped_column(String(255), nullable=True)
     review_notes: Mapped[str | None] = mapped_column(Text, nullable=True)
 
     created_at: Mapped[datetime] = mapped_column(

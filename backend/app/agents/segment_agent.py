@@ -1,7 +1,10 @@
 """Segment / audience generation agent."""
-import os
+
 import json
+import os
+
 from openai import OpenAI
+
 
 class SegmentAgent:
     """Generates audience definitions from natural-language goals."""
@@ -13,9 +16,7 @@ class SegmentAgent:
         if self.api_key:
             self.client = OpenAI(api_key=self.api_key, base_url=self.base_url)
 
-    def generate_audience(
-        self, goal: str, event_schema: dict | None = None
-    ) -> dict:
+    def generate_audience(self, goal: str, event_schema: dict | None = None) -> dict:
         """Return generated audience definition with inclusion/exclusion rules."""
         if not self.client:
             raise ValueError("OpenAI API key missing or invalid")
@@ -28,6 +29,6 @@ class SegmentAgent:
         response = self.client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[{"role": "user", "content": prompt}],
-            response_format={ "type": "json_object" }
+            response_format={"type": "json_object"},
         )
         return json.loads(response.choices[0].message.content)

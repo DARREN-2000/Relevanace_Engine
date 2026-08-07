@@ -7,10 +7,19 @@ from sqlalchemy.orm import Session
 from app.models.event import Event
 from app.models.user import User
 
-
 # Events that signal high purchase intent
-_HIGH_INTENT_EVENTS = {"pricing_view", "demo_request", "plan_comparison", "checkout_start"}
-_ACTIVATION_EVENTS = {"signup", "onboarding_complete", "first_integration", "invite_team"}
+_HIGH_INTENT_EVENTS = {
+    "pricing_view",
+    "demo_request",
+    "plan_comparison",
+    "checkout_start",
+}
+_ACTIVATION_EVENTS = {
+    "signup",
+    "onboarding_complete",
+    "first_integration",
+    "invite_team",
+}
 
 
 class ScoringEngine:
@@ -32,12 +41,8 @@ class ScoringEngine:
             return 0.0
 
         total = len(events)
-        high_intent = sum(
-            1 for e in events if e.event_name in _HIGH_INTENT_EVENTS
-        )
-        page_views = sum(
-            1 for e in events if e.event_type == "page_view"
-        )
+        high_intent = sum(1 for e in events if e.event_name in _HIGH_INTENT_EVENTS)
+        page_views = sum(1 for e in events if e.event_type == "page_view")
 
         # Weighted combination
         intent_ratio = high_intent / max(total, 1)
@@ -80,15 +85,9 @@ class ScoringEngine:
 
     def calculate_activation_score(self, user_id: str, db: Session) -> float:
         """Score 0.0–1.0 based on completion of activation milestones."""
-        events = (
-            db.query(Event)
-            .filter(Event.user_id == user_id)
-            .all()
-        )
+        events = db.query(Event).filter(Event.user_id == user_id).all()
 
-        completed = {
-            e.event_name for e in events if e.event_name in _ACTIVATION_EVENTS
-        }
+        completed = {e.event_name for e in events if e.event_name in _ACTIVATION_EVENTS}
         if not completed:
             return 0.0
 

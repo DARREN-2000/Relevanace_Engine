@@ -1,42 +1,42 @@
 [
-    {
-        "user_state": {
-            "id": "u1",
-            "lifecycle_stage": "churned",
-            "fatigue_score": 0.0,
-            "intent_score": 0.0,
-            "churn_risk": 0.9,
-            "consents": [{"channel": "email", "status": "granted"}]
-        },
-        "expected_action": "remind",
-        "expected_channel": "email",
-        "expected_suppressed": false
+  {
+    "user_state": {
+      "id": "u1",
+      "lifecycle_stage": "churned",
+      "fatigue_score": 0.0,
+      "intent_score": 0.0,
+      "churn_risk": 0.9,
+      "consents": [{ "channel": "email", "status": "granted" }]
     },
-    {
-        "user_state": {
-            "id": "u2",
-            "lifecycle_stage": "paying",
-            "fatigue_score": 0.95,
-            "intent_score": 0.2,
-            "churn_risk": 0.1,
-            "consents": [{"channel": "email", "status": "granted"}]
-        },
-        "expected_action": "pause",
-        "expected_channel": "none",
-        "expected_suppressed": true,
-        "expected_suppression_reason": "high_fatigue"
+    "expected_action": "remind",
+    "expected_channel": "email",
+    "expected_suppressed": false
+  },
+  {
+    "user_state": {
+      "id": "u2",
+      "lifecycle_stage": "paying",
+      "fatigue_score": 0.95,
+      "intent_score": 0.2,
+      "churn_risk": 0.1,
+      "consents": [{ "channel": "email", "status": "granted" }]
     },
-    {
-        "user_state": {
-            "id": "u3",
-            "lifecycle_stage": "trial",
-            "fatigue_score": 0.1,
-            "intent_score": 0.8,
-            "churn_risk": 0.0,
-            "consents": []
-        },
-        "expected_action": "none",
-        "expected_channel": "none",
-        "expected_suppressed": false
-    }
+    "expected_action": "pause",
+    "expected_channel": "none",
+    "expected_suppressed": true,
+    "expected_suppression_reason": "high_fatigue"
+  },
+  {
+    "user_state": {
+      "id": "u3",
+      "lifecycle_stage": "trial",
+      "fatigue_score": 0.1,
+      "intent_score": 0.8,
+      "churn_risk": 0.0,
+      "consents": []
+    },
+    "expected_action": "none",
+    "expected_channel": "none",
+    "expected_suppressed": false
+  }
 ]

@@ -38,16 +38,12 @@ class FatigueEngine:
 
         return round(min(max(fatigue, 0.0), 1.0), 4)
 
-    def is_fatigued(
-        self, user_id: str, db: Session, threshold: float = 0.80
-    ) -> bool:
+    def is_fatigued(self, user_id: str, db: Session, threshold: float = 0.80) -> bool:
         """Return True if the user's fatigue score exceeds the threshold."""
         score = self.calculate_fatigue_score(user_id, db)
         return score >= threshold
 
-    def get_recent_contact_count(
-        self, user_id: str, db: Session, days: int = 7
-    ) -> int:
+    def get_recent_contact_count(self, user_id: str, db: Session, days: int = 7) -> int:
         """Count non-suppressed messages sent to the user in the last N days."""
         cutoff = datetime.now(timezone.utc) - timedelta(days=days)
         return (

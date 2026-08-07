@@ -34,12 +34,8 @@ class Experiment(Base):
     end_date: Mapped[datetime | None] = mapped_column(
         DateTime(timezone=True), nullable=True
     )
-    winner_variant: Mapped[str | None] = mapped_column(
-        String(100), nullable=True
-    )
-    statistical_confidence: Mapped[float | None] = mapped_column(
-        Float, nullable=True
-    )
+    winner_variant: Mapped[str | None] = mapped_column(String(100), nullable=True)
+    statistical_confidence: Mapped[float | None] = mapped_column(Float, nullable=True)
 
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), default=_utcnow

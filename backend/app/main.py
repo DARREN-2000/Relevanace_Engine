@@ -1,32 +1,34 @@
 """Consentinel — FastAPI application factory."""
 
-from contextlib import asynccontextmanager
+import logging
+logger = logging.getLogger(__name__)
+
 from collections.abc import AsyncIterator
+from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
+from opentelemetry import trace
+from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
+from opentelemetry.sdk.trace import TracerProvider
+from prometheus_client import make_asgi_app
 
 from app.api import (
-    copy,
-    governance,
     analytics,
     audiences,
     consents,
+    copy,
     decisions,
     events,
     experiments,
+    governance,
     health,
     journeys,
     users,
 )
 from app.config import settings
 from app.database import Base, engine
-
-from prometheus_client import make_asgi_app
-from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
-from opentelemetry import trace
-from opentelemetry.sdk.trace import TracerProvider
 
 # Setup OpenTelemetry tracer
 trace.set_tracer_provider(TracerProvider())
@@ -86,6 +88,7 @@ def create_app() -> FastAPI:
     async def global_exception_handler(
         _request: Request, exc: Exception
     ) -> JSONResponse:
+        logger.exception("Unhandled exception:")
         return JSONResponse(
             status_code=500,
             content={"detail": "Internal server error", "type": type(exc).__name__},

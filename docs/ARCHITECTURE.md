@@ -110,19 +110,19 @@ Consentinel is a **consent-first, AI-powered next-best-action (NBA) platform** f
 
 ### Core Tables
 
-| Table | Purpose | Key Fields |
-|-------|---------|------------|
-| `users` | User profiles with behavioral scores | email, lifecycle_stage, intent_score, churn_risk, activation_score, fatigue_score |
-| `consents` | Per-channel consent records | user_id, channel, status (granted/denied), source, region |
-| `channel_preferences` | User channel preferences | frequency_cap_daily/weekly, quiet_hours_start/end |
-| `events` | Behavioral event stream | user_id, event_type, event_name, properties (JSON) |
-| `message_decisions` | Decision audit trail | channel, action, reason, consent_checked, suppressed, model_confidence |
-| `audiences` | Segmentation definitions | name, criteria (JSON), auto_refresh |
-| `journey_templates` | Multi-step journey definitions | name, goal, steps (JSON) |
-| `journey_runs` | User journey instances | user_id, template_id, current_step, status |
-| `experiments` | A/B test definitions | hypothesis, variants (JSON), status |
-| `audit_events` | Compliance audit trail | event_type, actor, details |
-| `approval_requests` | Content approval workflow | content_type, status, reviewer |
+| Table                 | Purpose                              | Key Fields                                                                        |
+| --------------------- | ------------------------------------ | --------------------------------------------------------------------------------- |
+| `users`               | User profiles with behavioral scores | email, lifecycle_stage, intent_score, churn_risk, activation_score, fatigue_score |
+| `consents`            | Per-channel consent records          | user_id, channel, status (granted/denied), source, region                         |
+| `channel_preferences` | User channel preferences             | frequency_cap_daily/weekly, quiet_hours_start/end                                 |
+| `events`              | Behavioral event stream              | user_id, event_type, event_name, properties (JSON)                                |
+| `message_decisions`   | Decision audit trail                 | channel, action, reason, consent_checked, suppressed, model_confidence            |
+| `audiences`           | Segmentation definitions             | name, criteria (JSON), auto_refresh                                               |
+| `journey_templates`   | Multi-step journey definitions       | name, goal, steps (JSON)                                                          |
+| `journey_runs`        | User journey instances               | user_id, template_id, current_step, status                                        |
+| `experiments`         | A/B test definitions                 | hypothesis, variants (JSON), status                                               |
+| `audit_events`        | Compliance audit trail               | event_type, actor, details                                                        |
+| `approval_requests`   | Content approval workflow            | content_type, status, reviewer                                                    |
 
 ### Entity Relationships
 
@@ -199,17 +199,18 @@ The NBA engine is the heart of Consentinel. For each user, it executes this deci
 
 The agents layer provides AI-powered capabilities. Currently implemented as mock/placeholder services, designed for future LLM integration:
 
-| Agent | Purpose | Interface |
-|-------|---------|-----------|
-| **SegmentAgent** | Generate audience segments from data patterns | `generate_segment(data_points, goal)` |
-| **JourneyAgent** | Design multi-step journey sequences | `design_journey(audience, goal)` |
-| **CopyAgent** | Generate message copy per channel/action | `generate_copy(channel, action, audience)` |
-| **ExperimentAgent** | Design A/B experiments with variants | `design_experiment(hypothesis, audience, goal)` |
-| **GovernanceAgent** | Check compliance against rules | `check_compliance(decision, rules, user_data)` |
+| Agent               | Purpose                                       | Interface                                       |
+| ------------------- | --------------------------------------------- | ----------------------------------------------- |
+| **SegmentAgent**    | Generate audience segments from data patterns | `generate_segment(data_points, goal)`           |
+| **JourneyAgent**    | Design multi-step journey sequences           | `design_journey(audience, goal)`                |
+| **CopyAgent**       | Generate message copy per channel/action      | `generate_copy(channel, action, audience)`      |
+| **ExperimentAgent** | Design A/B experiments with variants          | `design_experiment(hypothesis, audience, goal)` |
+| **GovernanceAgent** | Check compliance against rules                | `check_compliance(decision, rules, user_data)`  |
 
 ### Future Integration Points
 
 Each agent is designed to be swapped with a real LLM-backed implementation:
+
 - OpenAI GPT-4 / Claude for copy generation
 - Custom ML models for scoring refinement
 - RAG-based agents for compliance checking against regulation documents
@@ -220,15 +221,15 @@ Each agent is designed to be swapped with a real LLM-backed implementation:
 
 The platform supports these communication channels:
 
-| Channel | Type | Consent Required |
-|---------|------|-----------------|
-| `email` | Outbound | Yes — explicit opt-in |
-| `sms` | Outbound | Yes — explicit opt-in |
-| `push` | Outbound | Yes — device permission |
-| `crm_task` | Internal | No — internal handoff |
+| Channel       | Type        | Consent Required                 |
+| ------------- | ----------- | -------------------------------- |
+| `email`       | Outbound    | Yes — explicit opt-in            |
+| `sms`         | Outbound    | Yes — explicit opt-in            |
+| `push`        | Outbound    | Yes — device permission          |
+| `crm_task`    | Internal    | No — internal handoff            |
 | `ad_audience` | Retargeting | Yes — ad personalization consent |
-| `in_app` | In-product | Yes — in-app messaging consent |
-| `none` | Suppression | N/A — no action taken |
+| `in_app`      | In-product  | Yes — in-app messaging consent   |
+| `none`        | Suppression | N/A — no action taken            |
 
 ---
 
@@ -249,6 +250,7 @@ CONSENTHUB_API_KEY=your-api-key
 ```
 
 When configured, Consentinel will:
+
 - Fetch consent data from ConsentHub before making decisions
 - Push decision audit events to ConsentHub
 - Respect ConsentHub's preference center configurations

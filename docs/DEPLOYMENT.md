@@ -11,12 +11,14 @@ For the fastest no-cost demo deploy, use the included `render.yaml`.
 ```
 
 What this blueprint does:
+
 - Deploys the backend as a single Docker web service (`plan: free`)
 - Uses SQLite at `/tmp/consentinel.db` so no separate DB is needed (ephemeral)
 - Generates secure `SECRET_KEY` and `JWT_SECRET_KEY` automatically
 - Sets permissive CORS for fast demo setup
 
 After deploy:
+
 - Health check: `https://<your-service>.onrender.com/api/health`
 - Swagger UI: `https://<your-service>.onrender.com/docs`
 
@@ -55,11 +57,11 @@ curl http://localhost:8000/api/ready
 
 ### Services Started
 
-| Service | Port | Description |
-|---------|------|-------------|
-| `backend` | 8000 | FastAPI application |
-| `db` | 5432 (internal) | PostgreSQL 16 |
-| `redis` | 6379 (internal) | Redis 7 |
+| Service   | Port            | Description         |
+| --------- | --------------- | ------------------- |
+| `backend` | 8000            | FastAPI application |
+| `db`      | 5432 (internal) | PostgreSQL 16       |
+| `redis`   | 6379 (internal) | Redis 7             |
 
 ### Monitoring with Docker
 
@@ -190,23 +192,23 @@ helm rollback consentinel 1 --namespace consentinel
 
 ### Required
 
-| Variable | Description | Example |
-|----------|-------------|---------|
-| `DATABASE_URL` | PostgreSQL connection string | `postgresql://user:pass@host:5432/db` |
-| `SECRET_KEY` | Application secret key | Random 32+ char string |
-| `JWT_SECRET_KEY` | JWT signing key | Random 32+ char string |
+| Variable         | Description                  | Example                               |
+| ---------------- | ---------------------------- | ------------------------------------- |
+| `DATABASE_URL`   | PostgreSQL connection string | `postgresql://user:pass@host:5432/db` |
+| `SECRET_KEY`     | Application secret key       | Random 32+ char string                |
+| `JWT_SECRET_KEY` | JWT signing key              | Random 32+ char string                |
 
 ### Optional
 
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `REDIS_URL` | `redis://localhost:6379/0` | Redis connection string |
-| `BACKEND_PORT` | `8000` | API server port |
-| `CORS_ORIGINS` | `["http://localhost:3000"]` | Allowed CORS origins (JSON array) |
-| `DEBUG` | `false` | Enable debug mode |
-| `CONSENTHUB_API_URL` | _(empty)_ | ConsentHub integration URL |
-| `CONSENTHUB_API_KEY` | _(empty)_ | ConsentHub API key |
-| `JWT_ACCESS_TOKEN_EXPIRE_MINUTES` | `30` | JWT token expiry |
+| Variable                          | Default                     | Description                       |
+| --------------------------------- | --------------------------- | --------------------------------- |
+| `REDIS_URL`                       | `redis://localhost:6379/0`  | Redis connection string           |
+| `BACKEND_PORT`                    | `8000`                      | API server port                   |
+| `CORS_ORIGINS`                    | `["http://localhost:3000"]` | Allowed CORS origins (JSON array) |
+| `DEBUG`                           | `false`                     | Enable debug mode                 |
+| `CONSENTHUB_API_URL`              | _(empty)_                   | ConsentHub integration URL        |
+| `CONSENTHUB_API_KEY`              | _(empty)_                   | ConsentHub API key                |
+| `JWT_ACCESS_TOKEN_EXPIRE_MINUTES` | `30`                        | JWT token expiry                  |
 
 ### Production Checklist
 
@@ -228,6 +230,7 @@ helm rollback consentinel 1 --namespace consentinel
 The backend is stateless and can be horizontally scaled:
 
 **Docker Compose:**
+
 ```bash
 docker compose up --scale backend=3 -d
 ```
@@ -262,10 +265,10 @@ autoscaling:
 
 ### Health Endpoints
 
-| Endpoint | Purpose |
-|----------|---------|
-| `GET /api/health` | Liveness probe — is the process running? |
-| `GET /api/ready` | Readiness probe — is the database connected? |
+| Endpoint          | Purpose                                      |
+| ----------------- | -------------------------------------------- |
+| `GET /api/health` | Liveness probe — is the process running?     |
+| `GET /api/ready`  | Readiness probe — is the database connected? |
 
 ### Recommended Monitoring Stack
 
@@ -276,15 +279,15 @@ autoscaling:
 
 ### Key Metrics to Monitor
 
-| Metric | Alert Threshold | Description |
-|--------|----------------|-------------|
-| Request latency (p99) | > 500ms | API response time |
-| Error rate | > 1% | 5xx error percentage |
-| Decision throughput | < baseline | NBA decisions per second |
-| Suppression rate | > 50% | Actions suppressed vs. total |
-| Database connections | > 80% pool | Connection pool utilization |
-| CPU utilization | > 80% | Pod CPU usage |
-| Memory utilization | > 85% | Pod memory usage |
+| Metric                | Alert Threshold | Description                  |
+| --------------------- | --------------- | ---------------------------- |
+| Request latency (p99) | > 500ms         | API response time            |
+| Error rate            | > 1%            | 5xx error percentage         |
+| Decision throughput   | < baseline      | NBA decisions per second     |
+| Suppression rate      | > 50%           | Actions suppressed vs. total |
+| Database connections  | > 80% pool      | Connection pool utilization  |
+| CPU utilization       | > 80%           | Pod CPU usage                |
+| Memory utilization    | > 85%           | Pod memory usage             |
 
 ---
 
@@ -293,6 +296,7 @@ autoscaling:
 ### Continuous Integration (`.github/workflows/ci.yml`)
 
 Runs on every push and PR to `main`:
+
 1. **Lint**: Ruff code linting
 2. **Test**: pytest with coverage reporting
 3. **Docker Build**: Verify Docker image builds
@@ -301,6 +305,7 @@ Runs on every push and PR to `main`:
 ### Continuous Deployment (`.github/workflows/cd.yml`)
 
 Triggered on version tags (`v*`):
+
 1. Build Docker image
 2. Push to GitHub Container Registry (GHCR)
 3. Tag with version and `latest`

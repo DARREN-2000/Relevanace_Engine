@@ -19,9 +19,7 @@ class Event(Base):
     id: Mapped[str] = mapped_column(
         String(36), primary_key=True, default=lambda: str(uuid.uuid4())
     )
-    user_id: Mapped[str] = mapped_column(
-        String(36), ForeignKey("users.id"), index=True
-    )
+    user_id: Mapped[str] = mapped_column(String(36), ForeignKey("users.id"), index=True)
     event_type: Mapped[str] = mapped_column(String(50), index=True)
     event_name: Mapped[str] = mapped_column(String(255))
     properties: Mapped[dict | None] = mapped_column(JSON, nullable=True)

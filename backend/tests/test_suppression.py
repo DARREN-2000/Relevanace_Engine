@@ -2,7 +2,6 @@
 
 from app.engine.suppression import SuppressionEngine
 
-
 engine = SuppressionEngine()
 
 

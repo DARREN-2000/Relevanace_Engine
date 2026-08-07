@@ -36,9 +36,7 @@ class JourneyTemplate(Base):
     steps: Mapped[dict] = mapped_column(JSON)
     entry_conditions: Mapped[dict | None] = mapped_column(JSON, nullable=True)
     exit_conditions: Mapped[dict | None] = mapped_column(JSON, nullable=True)
-    suppression_rules: Mapped[dict | None] = mapped_column(
-        JSON, nullable=True
-    )
+    suppression_rules: Mapped[dict | None] = mapped_column(JSON, nullable=True)
     is_active: Mapped[bool] = mapped_column(Boolean, default=True)
     created_by: Mapped[str | None] = mapped_column(String(255), nullable=True)
 
@@ -64,9 +62,7 @@ class JourneyRun(Base):
     template_id: Mapped[str] = mapped_column(
         String(36), ForeignKey("journey_templates.id"), index=True
     )
-    user_id: Mapped[str] = mapped_column(
-        String(36), ForeignKey("users.id"), index=True
-    )
+    user_id: Mapped[str] = mapped_column(String(36), ForeignKey("users.id"), index=True)
     current_step: Mapped[int] = mapped_column(Integer, default=0)
     status: Mapped[str] = mapped_column(String(20), default="active")
     entered_at: Mapped[datetime] = mapped_column(

@@ -10,15 +10,15 @@ from app.models.journey import JourneyRun, JourneyTemplate
 from app.models.user import User
 
 __all__ = [
-    "User",
-    "Consent",
-    "ChannelPreference",
-    "Event",
-    "MessageDecision",
-    "Audience",
-    "JourneyTemplate",
-    "JourneyRun",
-    "Experiment",
-    "AuditEvent",
     "ApprovalRequest",
+    "Audience",
+    "AuditEvent",
+    "ChannelPreference",
+    "Consent",
+    "Event",
+    "Experiment",
+    "JourneyRun",
+    "JourneyTemplate",
+    "MessageDecision",
+    "User",
 ]

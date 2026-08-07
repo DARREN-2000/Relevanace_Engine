@@ -39,9 +39,7 @@ class SuppressionEngine:
 
         return False, None
 
-    def get_suppression_reasons(
-        self, user_id: str, db: Session
-    ) -> list[dict]:
+    def get_suppression_reasons(self, user_id: str, db: Session) -> list[dict]:
         """Return all current suppression reasons across channels."""
         channels = ["email", "sms", "push", "in_app", "ad_personalization"]
         reasons: list[dict] = []

@@ -16,6 +16,7 @@
 </p>
 
 <!-- Badges -->
+
 ![CI](https://github.com/DARREN-2000/Consentinel/actions/workflows/ci.yml/badge.svg)
 ![Python](https://img.shields.io/badge/python-3.12-blue.svg)
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.115-009688.svg)
@@ -33,18 +34,18 @@ Consentinel is a consent-first next-best-action engine. It puts **user consent a
 
 ## ✨ Key Features
 
-| Feature | Description |
-|---------|-------------|
-| 🧠 **Next-Best-Action Engine** | AI-driven decision engine that picks the optimal action per user |
-| 🛡️ **Consent-First Architecture** | Every action verified against user consent before execution |
-| 🤫 **"Do Nothing" as a Feature** | System can decide to suppress — reducing noise, increasing trust |
-| 📊 **Behavioral Scoring** | Real-time intent, churn risk, activation, and fatigue scoring |
-| 🔇 **Fatigue Management** | Automatic suppression when users are over-contacted |
-| 🗺️ **Journey Orchestration** | Multi-step automated journeys with consent gates at each step |
-| 🧪 **Experimentation** | Built-in A/B testing framework for continuous optimization |
-| 🤖 **AI Agents** | Pluggable agents for segmentation, copy, journeys, and governance |
-| 📈 **Analytics Dashboard** | Cohort analysis, funnels, attribution, and decision metrics |
-| 🔗 **ConsentHub Integration** | Companion to [B2B_Consent_Personalization](https://github.com/DARREN-2000/B2B_Consent_Personalization) |
+| Feature                           | Description                                                                                            |
+| --------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| 🧠 **Next-Best-Action Engine**    | AI-driven decision engine that picks the optimal action per user                                       |
+| 🛡️ **Consent-First Architecture** | Every action verified against user consent before execution                                            |
+| 🤫 **"Do Nothing" as a Feature**  | System can decide to suppress — reducing noise, increasing trust                                       |
+| 📊 **Behavioral Scoring**         | Real-time intent, churn risk, activation, and fatigue scoring                                          |
+| 🔇 **Fatigue Management**         | Automatic suppression when users are over-contacted                                                    |
+| 🗺️ **Journey Orchestration**      | Multi-step automated journeys with consent gates at each step                                          |
+| 🧪 **Experimentation**            | Built-in A/B testing framework for continuous optimization                                             |
+| 🤖 **AI Agents**                  | Pluggable agents for segmentation, copy, journeys, and governance                                      |
+| 📈 **Analytics Dashboard**        | Cohort analysis, funnels, attribution, and decision metrics                                            |
+| 🔗 **ConsentHub Integration**     | Companion to [B2B_Consent_Personalization](https://github.com/DARREN-2000/B2B_Consent_Personalization) |
 
 ---
 
@@ -83,6 +84,7 @@ For the complete architecture, see [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 ---
 
 ## 🔗 Links
+
 - [Product Site (GitHub Pages)](https://darren-2000.github.io/Consentinel/)
 - [Live API Demo](https://consentinel.onrender.com/api/health)
 
@@ -90,13 +92,13 @@ For the complete architecture, see [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
 ## 🏆 Competitor Comparison
 
-| Feature | Consentinel | Braze | Customer.io | Iterable |
-|---------|-------------|-------|-------------|----------|
-| **Consent-First** | Native | Add-on | Add-on | Add-on |
-| **Suppression** | Built-in | Workaround | Workaround | Workaround |
-| **"Do Nothing" NBA**| Core Engine | Custom script | Custom script | Custom script |
-| **Self-Hostable** | Yes | No | No | No |
-| **Open Source** | Yes | No | No | No |
+| Feature              | Consentinel | Braze         | Customer.io   | Iterable      |
+| -------------------- | ----------- | ------------- | ------------- | ------------- |
+| **Consent-First**    | Native      | Add-on        | Add-on        | Add-on        |
+| **Suppression**      | Built-in    | Workaround    | Workaround    | Workaround    |
+| **"Do Nothing" NBA** | Core Engine | Custom script | Custom script | Custom script |
+| **Self-Hostable**    | Yes         | No            | No            | No            |
+| **Open Source**      | Yes         | No            | No            | No            |
 
 ---
 
@@ -186,28 +188,28 @@ See the full [Development Guide](docs/DEVELOPMENT.md).
 
 ## 📡 API Overview
 
-| Endpoint | Method | Description |
-|----------|--------|-------------|
-| `/api/health` | GET | Liveness check |
-| `/api/ready` | GET | Readiness check (DB connectivity) |
-| `/api/users` | GET, POST | List / create users |
-| `/api/users/{id}` | GET, PUT, DELETE | User CRUD |
-| `/api/users/{id}/scores` | GET | Behavioral scores |
-| `/api/consents` | POST | Record consent |
-| `/api/consents/{user_id}` | GET | User consent records |
-| `/api/consents/{user_id}/summary` | GET | Consent summary |
-| `/api/decisions/next-best-action` | POST | **Core NBA decision** |
-| `/api/decisions/next-best-action/batch` | POST | Batch NBA decisions |
-| `/api/decisions/{id}/explain` | POST | Decision explainability |
-| `/api/events` | POST | Track events |
-| `/api/audiences` | GET, POST | Audience segments |
-| `/api/journeys/templates` | GET, POST | Journey templates |
-| `/api/journeys/{user_id}/enroll` | POST | Enroll in journey |
-| `/api/experiments` | GET, POST | A/B experiments |
-| `/api/analytics/dashboard` | GET | Dashboard metrics |
-| `/api/analytics/cohorts` | GET | Cohort analysis |
-| `/api/analytics/funnels` | GET | Funnel analysis |
-| `/api/analytics/attribution` | GET | Channel attribution |
+| Endpoint                                | Method           | Description                       |
+| --------------------------------------- | ---------------- | --------------------------------- |
+| `/api/health`                           | GET              | Liveness check                    |
+| `/api/ready`                            | GET              | Readiness check (DB connectivity) |
+| `/api/users`                            | GET, POST        | List / create users               |
+| `/api/users/{id}`                       | GET, PUT, DELETE | User CRUD                         |
+| `/api/users/{id}/scores`                | GET              | Behavioral scores                 |
+| `/api/consents`                         | POST             | Record consent                    |
+| `/api/consents/{user_id}`               | GET              | User consent records              |
+| `/api/consents/{user_id}/summary`       | GET              | Consent summary                   |
+| `/api/decisions/next-best-action`       | POST             | **Core NBA decision**             |
+| `/api/decisions/next-best-action/batch` | POST             | Batch NBA decisions               |
+| `/api/decisions/{id}/explain`           | POST             | Decision explainability           |
+| `/api/events`                           | POST             | Track events                      |
+| `/api/audiences`                        | GET, POST        | Audience segments                 |
+| `/api/journeys/templates`               | GET, POST        | Journey templates                 |
+| `/api/journeys/{user_id}/enroll`        | POST             | Enroll in journey                 |
+| `/api/experiments`                      | GET, POST        | A/B experiments                   |
+| `/api/analytics/dashboard`              | GET              | Dashboard metrics                 |
+| `/api/analytics/cohorts`                | GET              | Cohort analysis                   |
+| `/api/analytics/funnels`                | GET              | Funnel analysis                   |
+| `/api/analytics/attribution`            | GET              | Channel attribution               |
 
 Full API documentation: [docs/API.md](docs/API.md)
 
@@ -268,6 +270,7 @@ The NBA engine can return `channel: "none"` and `action: "none"` — meaning the
 - **Frequency cap hit** — daily/weekly limits reached → wait
 
 This approach leads to:
+
 - 📉 Lower unsubscribe rates
 - 📈 Higher engagement when you do reach out
 - 🛡️ Better compliance posture
@@ -279,14 +282,15 @@ This approach leads to:
 
 Consentinel is designed as the **action engine** companion to [B2B_Consent_Personalization](https://github.com/DARREN-2000/B2B_Consent_Personalization) (ConsentHub):
 
-| | ConsentHub | Consentinel |
-|---|---|---|
-| **Role** | Consent management & personalization | Decision & action execution |
-| **Decides** | What consent exists | What to do with that consent |
-| **Owns** | Preference center, consent records | NBA engine, journeys, experiments |
-| **Integration** | Provides consent data via API | Consumes consent, acts on it |
+|                 | ConsentHub                           | Consentinel                       |
+| --------------- | ------------------------------------ | --------------------------------- |
+| **Role**        | Consent management & personalization | Decision & action execution       |
+| **Decides**     | What consent exists                  | What to do with that consent      |
+| **Owns**        | Preference center, consent records   | NBA engine, journeys, experiments |
+| **Integration** | Provides consent data via API        | Consumes consent, acts on it      |
 
 Configure the integration:
+
 ```env
 CONSENTHUB_API_URL=https://consenthub.example.com/api
 CONSENTHUB_API_KEY=your-api-key
@@ -304,6 +308,7 @@ make format            # Auto-format code
 ```
 
 The test suite covers:
+
 - API endpoint tests (health, users, consents, decisions, events)
 - Core engine logic (NBA, consent, fatigue, suppression)
 - In-memory SQLite — no external services needed
@@ -313,6 +318,7 @@ The test suite covers:
 ## 🚢 Deployment
 
 ### Docker Compose (recommended for single-server)
+
 ```bash
 make up                # Production stack
 make dev               # Development with hot-reload
@@ -321,6 +327,7 @@ make clean             # Full cleanup
 ```
 
 ### Kubernetes / Helm
+
 ```bash
 helm install consentinel ./helm/consentinel \
   --namespace consentinel \
@@ -333,58 +340,58 @@ See the full [Deployment Guide](docs/DEPLOYMENT.md).
 
 ## 📊 KPIs Tracked
 
-| KPI | Description |
-|-----|-------------|
-| **Suppression Rate** | % of decisions where "do nothing" was the best action |
-| **Consent Coverage** | % of users with at least one active consent |
-| **Decision Confidence** | Average model confidence across NBA decisions |
-| **Channel Distribution** | Decision volume per channel |
-| **Fatigue Score (avg)** | Average user fatigue across the platform |
-| **Journey Completion Rate** | % of journey runs completed vs. started |
-| **Experiment Lift** | Measured improvement from A/B experiments |
-| **Engagement Rate** | Opens + clicks / decisions executed |
-| **Time-to-Action** | Latency from event to NBA decision |
+| KPI                         | Description                                           |
+| --------------------------- | ----------------------------------------------------- |
+| **Suppression Rate**        | % of decisions where "do nothing" was the best action |
+| **Consent Coverage**        | % of users with at least one active consent           |
+| **Decision Confidence**     | Average model confidence across NBA decisions         |
+| **Channel Distribution**    | Decision volume per channel                           |
+| **Fatigue Score (avg)**     | Average user fatigue across the platform              |
+| **Journey Completion Rate** | % of journey runs completed vs. started               |
+| **Experiment Lift**         | Measured improvement from A/B experiments             |
+| **Engagement Rate**         | Opens + clicks / decisions executed                   |
+| **Time-to-Action**          | Latency from event to NBA decision                    |
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Layer | Technology |
-|-------|-----------|
-| **API Framework** | FastAPI 0.115 |
-| **Language** | Python 3.12 |
-| **ORM** | SQLAlchemy 2.0 |
-| **Database** | PostgreSQL 16 |
-| **Cache** | Redis 7 |
-| **Validation** | Pydantic 2.10 |
-| **Auth** | python-jose (JWT) + passlib |
-| **Migrations** | Alembic |
-| **HTTP Client** | httpx |
-| **Testing** | pytest + pytest-cov + pytest-asyncio |
-| **Linting** | Ruff |
-| **Containers** | Docker + Docker Compose |
-| **Orchestration** | Kubernetes + Helm |
-| **CI/CD** | GitHub Actions |
-| **Observability**| Prometheus, OpenTelemetry |
-| **Frontend**     | Vite, React, Recharts |
-| **Agents**       | OpenAI API |
+| Layer             | Technology                           |
+| ----------------- | ------------------------------------ |
+| **API Framework** | FastAPI 0.115                        |
+| **Language**      | Python 3.12                          |
+| **ORM**           | SQLAlchemy 2.0                       |
+| **Database**      | PostgreSQL 16                        |
+| **Cache**         | Redis 7                              |
+| **Validation**    | Pydantic 2.10                        |
+| **Auth**          | python-jose (JWT) + passlib          |
+| **Migrations**    | Alembic                              |
+| **HTTP Client**   | httpx                                |
+| **Testing**       | pytest + pytest-cov + pytest-asyncio |
+| **Linting**       | Ruff                                 |
+| **Containers**    | Docker + Docker Compose              |
+| **Orchestration** | Kubernetes + Helm                    |
+| **CI/CD**         | GitHub Actions                       |
+| **Observability** | Prometheus, OpenTelemetry            |
+| **Frontend**      | Vite, React, Recharts                |
+| **Agents**        | OpenAI API                           |
 
 ---
 
 ## 🗺️ Roadmap
 
-| Feature | Status |
-|---------|--------|
-| FastAPI Backend | ✅ Implemented |
-| NBA Engine | ✅ Implemented |
-| Real DB Seed & Demo Data | ✅ Implemented |
-| OpenTelemetry & Prometheus | ✅ Implemented |
+| Feature                           | Status         |
+| --------------------------------- | -------------- |
+| FastAPI Backend                   | ✅ Implemented |
+| NBA Engine                        | ✅ Implemented |
+| Real DB Seed & Demo Data          | ✅ Implemented |
+| OpenTelemetry & Prometheus        | ✅ Implemented |
 | LLM-powered Copy & Segment Agents | ✅ Implemented |
-| Decision-Evaluation Harness | ✅ Implemented |
-| React/Vite Dashboard | ✅ Implemented |
-| GitHub Pages Site | ✅ Implemented |
-| LLM-powered Journey Agent | ✅ Implemented |
-| LLM-powered Governance Agent | ✅ Implemented |
+| Decision-Evaluation Harness       | ✅ Implemented |
+| React/Vite Dashboard              | ✅ Implemented |
+| GitHub Pages Site                 | ✅ Implemented |
+| LLM-powered Journey Agent         | ✅ Implemented |
+| LLM-powered Governance Agent      | ✅ Implemented |
 
 ---
 

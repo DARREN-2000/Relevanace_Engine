@@ -17,9 +17,7 @@ segment_agent = SegmentAgent()
 
 
 @router.post("", response_model=AudienceResponse, status_code=201)
-def create_audience(
-    payload: AudienceCreate, db: Session = Depends(get_db)
-) -> Audience:
+def create_audience(payload: AudienceCreate, db: Session = Depends(get_db)) -> Audience:
     audience = Audience(
         name=payload.name,
         description=payload.description,
@@ -51,9 +49,7 @@ def get_audience(audience_id: str, db: Session = Depends(get_db)) -> Audience:
 def generate_audience(
     payload: AudienceGenerateRequest, db: Session = Depends(get_db)
 ) -> Audience:
-    generated = segment_agent.generate_audience(
-        payload.goal, payload.event_schema
-    )
+    generated = segment_agent.generate_audience(payload.goal, payload.event_schema)
     audience = Audience(
         name=generated["name"],
         description=generated.get("description"),

@@ -43,12 +43,8 @@ def list_experiments(db: Session = Depends(get_db)) -> list:
 
 
 @router.get("/{experiment_id}", response_model=ExperimentResponse)
-def get_experiment(
-    experiment_id: str, db: Session = Depends(get_db)
-) -> Experiment:
-    experiment = (
-        db.query(Experiment).filter(Experiment.id == experiment_id).first()
-    )
+def get_experiment(experiment_id: str, db: Session = Depends(get_db)) -> Experiment:
+    experiment = db.query(Experiment).filter(Experiment.id == experiment_id).first()
     if not experiment:
         raise HTTPException(status_code=404, detail="Experiment not found")
     return experiment

@@ -1,7 +1,10 @@
 """Copy / message generation agent."""
-import os
+
 import json
+import os
+
 from openai import OpenAI
+
 
 class CopyAgent:
     """Generates message copy variants for campaigns."""
@@ -33,6 +36,6 @@ class CopyAgent:
         response = self.client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[{"role": "user", "content": prompt}],
-            response_format={ "type": "json_object" }
+            response_format={"type": "json_object"},
         )
         return json.loads(response.choices[0].message.content)

@@ -12,9 +12,7 @@ from app.engine.fatigue import FatigueEngine
 from app.engine.suppression import SuppressionEngine
 from app.models.user import User
 
-Channel = Literal[
-    "email", "sms", "push", "crm_task", "ad_audience", "in_app", "none"
-]
+Channel = Literal["email", "sms", "push", "crm_task", "ad_audience", "in_app", "none"]
 Action = Literal["educate", "remind", "offer", "handoff", "pause", "none"]
 
 
@@ -69,11 +67,7 @@ class NextBestActionEngine:
         # 4. Decision tree based on scores and consent
 
         # High intent, high value — sales handoff
-        if (
-            user.intent_score > 0.85
-            and user.company_size
-            and user.company_size > 20
-        ):
+        if user.intent_score > 0.85 and user.company_size and user.company_size > 20:
             return Decision(
                 "crm_task",
                 "handoff",

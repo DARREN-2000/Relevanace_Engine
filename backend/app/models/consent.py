@@ -19,9 +19,7 @@ class Consent(Base):
     id: Mapped[str] = mapped_column(
         String(36), primary_key=True, default=lambda: str(uuid.uuid4())
     )
-    user_id: Mapped[str] = mapped_column(
-        String(36), ForeignKey("users.id"), index=True
-    )
+    user_id: Mapped[str] = mapped_column(String(36), ForeignKey("users.id"), index=True)
     channel: Mapped[str] = mapped_column(String(50))
     status: Mapped[str] = mapped_column(String(20))
     source: Mapped[str | None] = mapped_column(String(100), nullable=True)
@@ -55,18 +53,12 @@ class ChannelPreference(Base):
     id: Mapped[str] = mapped_column(
         String(36), primary_key=True, default=lambda: str(uuid.uuid4())
     )
-    user_id: Mapped[str] = mapped_column(
-        String(36), ForeignKey("users.id"), index=True
-    )
+    user_id: Mapped[str] = mapped_column(String(36), ForeignKey("users.id"), index=True)
     channel: Mapped[str] = mapped_column(String(50))
     frequency_cap_daily: Mapped[int] = mapped_column(Integer, default=1)
     frequency_cap_weekly: Mapped[int] = mapped_column(Integer, default=3)
-    quiet_hours_start: Mapped[str | None] = mapped_column(
-        String(5), nullable=True
-    )
-    quiet_hours_end: Mapped[str | None] = mapped_column(
-        String(5), nullable=True
-    )
+    quiet_hours_start: Mapped[str | None] = mapped_column(String(5), nullable=True)
+    quiet_hours_end: Mapped[str | None] = mapped_column(String(5), nullable=True)
     topics: Mapped[dict | None] = mapped_column(JSON, nullable=True)
 
     created_at: Mapped[datetime] = mapped_column(
